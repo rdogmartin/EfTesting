@@ -1,11 +1,12 @@
 ﻿using EfTesting.Config;
 using EfTesting.Enumerations;
+using EfTesting.Interfaces;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EfTesting.Dto;
 [Table("FormBase", Schema = "fec")]
-public class FormBaseDto
+public class FormBaseDto : IDatabaseEntity
 {
     public FormBaseDto()
     {

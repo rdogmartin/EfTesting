@@ -1,5 +1,10 @@
 using EfTesting.DbContext;
+using EfTesting.Interfaces;
+using EfTesting.Repository;
+using EfTesting.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Logging;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,23 +20,46 @@ builder.Services.AddDbContext<FecContext>(
         }
     }
 );
+builder.Services.AddScoped<IFormBaseRepository, FormBaseRepository>();
+builder.Services.AddScoped<IForm99Repository, Form99Repository>();
+
+builder.Services.AddScoped<FormBaseService>();
+builder.Services.AddScoped<Form99Service>();
+
+builder.Services.AddControllers().AddJsonOptions(options =>
+    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter())
+);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+builder.Services.Configure<RouteOptions>(options =>
+{
+    options.LowercaseUrls = true;
+    options.LowercaseQueryStrings = true;
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Error");
+    app.UseSwagger();
+    app.UseSwaggerUI();
+    IdentityModelEventSource.ShowPII = true;
 }
 app.UseStaticFiles();
 
-app.UseRouting();
+//app.UseRouting();
 
 app.UseAuthorization();
 
-app.MapRazorPages();
+//app.MapRazorPages();
+
+app.MapControllers();
 
 app.Run();
