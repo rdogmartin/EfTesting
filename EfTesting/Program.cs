@@ -22,9 +22,11 @@ builder.Services.AddDbContext<FecContext>(
 );
 builder.Services.AddScoped<IFormBaseRepository, FormBaseRepository>();
 builder.Services.AddScoped<IForm99Repository, Form99Repository>();
+builder.Services.AddScoped<IFormSchARepository, FormSchARepository>();
 
 builder.Services.AddScoped<FormBaseService>();
 builder.Services.AddScoped<Form99Service>();
+builder.Services.AddScoped<FormSchAService>();
 
 builder.Services.AddControllers().AddJsonOptions(options =>
     options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter())

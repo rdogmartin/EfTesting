@@ -1,4 +1,4 @@
-﻿using EfTesting.Enumerations;
+﻿using EfTesting.Enums;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 

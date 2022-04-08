@@ -1,5 +1,5 @@
 ﻿using EfTesting.Dto;
-using EfTesting.Enumerations;
+using EfTesting.Enums;
 using EfTesting.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -43,7 +43,7 @@ namespace EfTesting.Controllers
                 ValidationResult = "",
                 ValidationDateTime = null,
                 DateSigned = null,
-                FilingCommitteeEntityType = EntityType.Individual,
+                FilingCommitteeEntityType = EntityType.IND,
                 FilingCommitteeFecId = "Cm 123",
                 FilingCommitteeName = "Micky for Prez",
                 FilingCommitteeAddressLine1 = "123 Main St",

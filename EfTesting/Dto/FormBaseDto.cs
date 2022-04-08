@@ -1,5 +1,5 @@
 ﻿using EfTesting.Config;
-using EfTesting.Enumerations;
+using EfTesting.Enums;
 using EfTesting.Interfaces;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -10,7 +10,7 @@ public class FormBaseDto : IDatabaseEntity
 {
     public FormBaseDto()
     {
-        FilingCommitteeEntityType = EntityType.PartyCommittee;
+        FilingCommitteeEntityType = EntityType.PTY;
         FilingCommitteeFecId = string.Empty;
         FilingCommitteeName = string.Empty;
         FilingCommitteeAddressLine1 = string.Empty;

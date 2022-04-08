@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EfTesting.Migrations
 {
     [DbContext(typeof(FecContext))]
-    [Migration("20220407230012_InitialCreate")]
+    [Migration("20220408205734_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -134,6 +134,118 @@ namespace EfTesting.Migrations
                     b.HasKey("UniqueId");
 
                     b.ToTable("FormBase", "fec");
+                });
+
+            modelBuilder.Entity("EfTesting.Dto.FormSchADto", b =>
+                {
+                    b.Property<int>("UniqueId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UniqueId"), 1L, 1);
+
+                    b.Property<string>("BackRefScheduleName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(35)");
+
+                    b.Property<string>("BackRefTransactionId")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<decimal>("ContributionAggregate")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("ContributionAmount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("ContributionDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ContributionPurpose")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("ContributorEmployer")
+                        .IsRequired()
+                        .HasMaxLength(38)
+                        .HasColumnType("nvarchar(38)");
+
+                    b.Property<string>("ContributorFirstName")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("ContributorLastName")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<string>("ContributorMiddleName")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("ContributorOccupation")
+                        .IsRequired()
+                        .HasMaxLength(38)
+                        .HasColumnType("nvarchar(38)");
+
+                    b.Property<string>("ContributorOrganizationName")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("ContributorPrefix")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("ContributorSuffix")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("ElectionCode")
+                        .IsRequired()
+                        .HasMaxLength(5)
+                        .HasColumnType("nvarchar(5)");
+
+                    b.Property<string>("ElectionOtherDescription")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("EntityType")
+                        .IsRequired()
+                        .HasColumnType("nchar(3)");
+
+                    b.Property<string>("FilerCommittedId")
+                        .IsRequired()
+                        .HasMaxLength(9)
+                        .HasColumnType("nvarchar(9)");
+
+                    b.Property<string>("FormType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(35)");
+
+                    b.Property<bool>("IsMemo")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("MemoText")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("TransactionId")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.HasKey("UniqueId");
+
+                    b.ToTable("FormSchA", "fec");
                 });
 
             modelBuilder.Entity("EfTesting.Dto.Form99Dto", b =>

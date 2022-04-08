@@ -50,6 +50,41 @@ namespace EfTesting.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "FormSchA",
+                schema: "fec",
+                columns: table => new
+                {
+                    UniqueId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FormType = table.Column<string>(type: "nvarchar(35)", nullable: false),
+                    FilerCommittedId = table.Column<string>(type: "nvarchar(9)", maxLength: 9, nullable: false),
+                    TransactionId = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    BackRefTransactionId = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    BackRefScheduleName = table.Column<string>(type: "nvarchar(35)", nullable: false),
+                    EntityType = table.Column<string>(type: "nchar(3)", nullable: false),
+                    ContributorOrganizationName = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    ContributorLastName = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    ContributorFirstName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    ContributorMiddleName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    ContributorPrefix = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
+                    ContributorSuffix = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
+                    ElectionCode = table.Column<string>(type: "nvarchar(5)", maxLength: 5, nullable: false),
+                    ElectionOtherDescription = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    ContributionDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ContributionAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    ContributionAggregate = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    ContributionPurpose = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    ContributorEmployer = table.Column<string>(type: "nvarchar(38)", maxLength: 38, nullable: false),
+                    ContributorOccupation = table.Column<string>(type: "nvarchar(38)", maxLength: 38, nullable: false),
+                    IsMemo = table.Column<bool>(type: "bit", nullable: false),
+                    MemoText = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FormSchA", x => x.UniqueId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Form99",
                 schema: "fec",
                 columns: table => new
@@ -74,6 +109,10 @@ namespace EfTesting.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Form99",
+                schema: "fec");
+
+            migrationBuilder.DropTable(
+                name: "FormSchA",
                 schema: "fec");
 
             migrationBuilder.DropTable(
