@@ -51,8 +51,8 @@ public class FakerGenerator
             .RuleFor(o => o.FormType, f => f.PickRandom<FecRecordType>())
             .RuleFor(o => o.FilerCommittedId, GenerateFecFilerCommitteeId)
             .RuleFor(o => o.TransactionId, GenerateTransactionId)
-            .RuleFor(o => o.BackRefTransactionId, GenerateTransactionId)
-            .RuleFor(o => o.BackRefScheduleName, f => f.PickRandom<FecRecordType>())
+            .RuleFor(o => o.BackRefTransactionId, GenerateBackRefTransactionId)
+            .RuleFor(o => o.BackRefScheduleName, GenerateBackRefScheduleName)
             .RuleFor(o => o.EntityType, f => f.PickRandom<EntityType>())
             .RuleFor(o => o.ContributorOrganizationName, f => f.Company.CompanyName())
             .RuleFor(o => o.ContributorLastName, f => f.Name.LastName())
@@ -75,8 +75,8 @@ public class FakerGenerator
             .RuleFor(o => o.FormType, f => f.PickRandom<FecRecordType>())
             .RuleFor(o => o.FilerCommittedId, GenerateFecFilerCommitteeId)
             .RuleFor(o => o.TransactionId, GenerateTransactionId)
-            .RuleFor(o => o.BackRefTransactionId, GenerateTransactionId)
-            .RuleFor(o => o.BackRefScheduleName, f => f.PickRandom<FecRecordType>())
+            .RuleFor(o => o.BackRefTransactionId, GenerateBackRefTransactionId)
+            .RuleFor(o => o.BackRefScheduleName, GenerateBackRefScheduleName)
             .RuleFor(o => o.EntityType, f => f.PickRandom<EntityType>())
             .RuleFor(o => o.ContributorOrganizationName, f => f.Company.CompanyName())
             .RuleFor(o => o.ContributorLastName, f => f.Name.LastName())
@@ -141,6 +141,34 @@ public class FakerGenerator
     private static string GenerateTransactionId(Faker f)
     {
         return $"fec-tx-{f.Random.Int(1, 9999):0000}";
+    }
+
+    private static string GenerateBackRefTransactionId(Faker f)
+    {
+        // The Feb '20 FEC file shows 75% of the rows had an empty value here.
+        var myNum = f.Random.Int(1, 4);
+        if (myNum == 4)
+        {
+            return $"fec-tx-{f.Random.Int(1, 9999):0000}";
+        }
+        else
+        {
+            return string.Empty;
+        }
+    }
+
+    private static FecRecordType? GenerateBackRefScheduleName(Faker f)
+    {
+        // The Feb '20 FEC file shows 75% of the rows had an empty value here.
+        var myNum = f.Random.Int(1, 4);
+        if (myNum == 4)
+        {
+            return f.PickRandom<FecRecordType>();
+        }
+        else
+        {
+            return null;
+        }
     }
 
     private static string GenerateFecId(Faker f)

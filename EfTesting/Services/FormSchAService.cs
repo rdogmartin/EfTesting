@@ -23,15 +23,22 @@ public class FormSchAService
         return _formSchARepository.GetAll().ToList();
     }
 
-    public async Task Add(FormSchADto formSchA)
+    public async Task<FormSchADto> Add(FormSchADto formSchA)
     {
         _formSchARepository.Add(formSchA);
         await _formSchARepository.Save();
+        return formSchA;
     }
 
     public async Task AddRange(IEnumerable<FormSchADto> formSchAs)
     {
         _formSchARepository.AddRange(formSchAs);
+        await _formSchARepository.Save();
+    }
+
+    public async Task Update(FormSchADto formSchA)
+    {
+        _formSchARepository.Update(formSchA);
         await _formSchARepository.Save();
     }
 }

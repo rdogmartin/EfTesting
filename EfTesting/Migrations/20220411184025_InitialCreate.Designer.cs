@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EfTesting.Migrations
 {
     [DbContext(typeof(FecContext))]
-    [Migration("20220411160656_InitialCreate")]
+    [Migration("20220411184025_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -144,7 +144,7 @@ namespace EfTesting.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UniqueId"), 1L, 1);
 
-                    b.Property<byte>("BackRefScheduleName")
+                    b.Property<byte?>("BackRefScheduleName")
                         .HasColumnType("tinyint");
 
                     b.Property<string>("BackRefTransactionId")
@@ -254,7 +254,6 @@ namespace EfTesting.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UniqueId"), 1L, 1);
 
                     b.Property<string>("BackRefScheduleName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(35)");
 
                     b.Property<string>("BackRefTransactionId")

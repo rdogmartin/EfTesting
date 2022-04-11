@@ -24,7 +24,7 @@ namespace EfTesting.Dto
         public string BackRefTransactionId { get; set; } = null!;
 
         [Column(TypeName = "tinyint")]
-        public FecRecordType BackRefScheduleName { get; set; }
+        public FecRecordType? BackRefScheduleName { get; set; }
 
         [Column(TypeName = "tinyint")]
         public EntityType EntityType { get; set; }

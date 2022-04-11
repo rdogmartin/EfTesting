@@ -164,6 +164,7 @@ public enum FecFormFilingStatus : short
 
 public enum Form99DocType : short
 {
+    Unknown = 0,
     ///<summary>Miscellaneous Report To FEC</summary>
     MiscReportToFec,
     ///<summary>Disavowal Response</summary>

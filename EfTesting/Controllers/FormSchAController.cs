@@ -46,10 +46,10 @@ namespace EfTesting.Controllers
         [HttpGet("insert")]
         async public Task InsertRecords()
         {
-            for (int i = 0; i < 1; i++)
+            for (int i = 0; i < 500; i++)
             {
                 var faker = new FakerGenerator();
-                var entities = faker.FormSchADto.Generate(892);
+                var entities = faker.FormSchADto.Generate(1000);
                 await _formSchAService.AddRange(entities);
             }
 
@@ -84,14 +84,19 @@ namespace EfTesting.Controllers
 
         // POST api/<SchAController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<ActionResult<FormSchADto>> Post(FormSchADto formSchADto)
         {
+            formSchADto = await _formSchAService.Add(formSchADto);
+            return CreatedAtAction(nameof(Post), new { id = formSchADto.UniqueId }, formSchADto);
         }
 
         // PUT api/<SchAController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut]
+        public async Task<ActionResult> Put(FormSchADto formSchADto)
         {
+            await _formSchAService.Update(formSchADto);
+
+            return NoContent();
         }
 
         // DELETE api/<SchAController>/5

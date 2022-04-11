@@ -142,7 +142,7 @@ namespace EfTesting.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UniqueId"), 1L, 1);
 
-                    b.Property<byte>("BackRefScheduleName")
+                    b.Property<byte?>("BackRefScheduleName")
                         .HasColumnType("tinyint");
 
                     b.Property<string>("BackRefTransactionId")
@@ -252,7 +252,6 @@ namespace EfTesting.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UniqueId"), 1L, 1);
 
                     b.Property<string>("BackRefScheduleName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(35)");
 
                     b.Property<string>("BackRefTransactionId")
