@@ -12,18 +12,18 @@ namespace EfTesting.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Produces("application/json")]
-    public class FormSchAController : ControllerBase
+    public class FormSchA2Controller : ControllerBase
     {
-        private readonly FormSchAService _formSchAService;
+        private readonly FormSchA2Service _formSchAService;
 
-        public FormSchAController(FormSchAService formSchAService)
+        public FormSchA2Controller(FormSchA2Service formSchAService)
         {
             _formSchAService = formSchAService;
         }
 
         // GET: api/<SchAController>
         [HttpGet]
-        public ActionResult<List<FormSchADto>> Get()
+        public ActionResult<List<FormSchA2Dto>> Get()
         {
             Stopwatch stopwatch = Stopwatch.StartNew();
             var items = _formSchAService.GetAll().ToList();
@@ -34,7 +34,7 @@ namespace EfTesting.Controllers
 
         // GET api/<SchAController>/5
         [HttpGet("{id}")]
-        public Task<FormSchADto?> Get(int id)
+        public Task<FormSchA2Dto?> Get(int id)
         {
             Stopwatch stopwatch = Stopwatch.StartNew();
             var item = _formSchAService.GetById(id);
@@ -49,7 +49,7 @@ namespace EfTesting.Controllers
             for (int i = 0; i < 1; i++)
             {
                 var faker = new FakerGenerator();
-                var entities = faker.FormSchADto.Generate(892);
+                var entities = faker.FormSchA2Dto.Generate(1);
                 await _formSchAService.AddRange(entities);
             }
 
