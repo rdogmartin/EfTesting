@@ -3,6 +3,7 @@
 # You can learn more about editorconfig here: https://docs.microsoft.com/en-us/visualstudio/ide/editorconfig-code-style-settings-reference.
 [*.cs]
 
+
 #Core editorconfig formatting - indentation
 
 #use soft tabs (spaces) for indentation
